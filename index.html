@@ -3,18 +3,18 @@
 
 <head>
     <script>
-        var APP_CONFIG = {
-            "domain": "https://jup9.com",
-            "mainExit_currentTab_zoneId": 10474870,
-            "mainExit_newTab_zoneId": 10474869,
-            "reverse_zoneId": 10474868,
-            "push_zoneId": 10474873,
-            "autoexit_zoneId": 10474871,
-            "autoexit_timeToRedirect": 90,
-            "back_zoneId": 10474872,
-            "back_count": 10
-        };
-    </script>
+    var APP_CONFIG = {
+        "domain": "https://jup9.com",
+        "mainExit_currentTab_zoneId": 10474870,
+        "mainExit_newTab_zoneId": 10474869,
+        "reverse_zoneId": 10474868,
+        "push_zoneId": 10474873,
+        "autoexit_zoneId": 10474871,
+        "autoexit_timeToRedirect": 90,
+        "back_zoneId": 10474872,
+        "back_count": 10
+    };
+</script>
     
     <script>"use strict";(()=>{var g=()=>{let t=new Date,r=t.getUTCFullYear(),s=String(t.getUTCMonth()+1).padStart(2,"0"),n=String(t.getUTCDate()).padStart(2,"0"),o=String(t.getUTCHours()).padStart(2,"0"),a=String(t.getUTCMinutes()).padStart(2,"0"),c=String(t.getUTCSeconds()).padStart(2,"0"),_=String(t.getUTCMilliseconds()*1e3).padStart(6,"0");return`${r}-${s}-${n} ${o}:${a}:${c}.${_} +00:00`};function d({url:t,data:r}){var n;return((n=window==null?void 0:window.navigator)==null?void 0:n.sendBeacon(t.toString(),r?JSON.stringify(r):void 0))?Promise.resolve():Promise.reject(new Error("sendBeacon failed"))}var e=new URL(window.location.href),b,v,h,p,E,T,P,y,N,w,R,f,O,D,S,x,z,C,Y,i={pz:(b=e.searchParams.get("pz"))!=null?b:"",tb:(v=e.searchParams.get("tb"))!=null?v:"",tb_reverse:(h=e.searchParams.get("tb_reverse"))!=null?h:"",ae:(p=e.searchParams.get("ae"))!=null?p:"",z:(E=e.searchParams.get("z"))!=null?E:"",var:(T=e.searchParams.get("var"))!=null?T:"",var_1:(P=e.searchParams.get("var_1"))!=null?P:"",var_2:(y=e.searchParams.get("var_2"))!=null?y:"",var_3:(N=e.searchParams.get("var_3"))!=null?N:"",b:(w=e.searchParams.get("b"))!=null?w:"",campaignid:(R=e.searchParams.get("campaignid"))!=null?R:"",abtest:(f=e.searchParams.get("abtest"))!=null?f:"",rhd:(O=e.searchParams.get("rhd"))!=null?O:"1",s:(D=e.searchParams.get("s"))!=null?D:"",ymid:(S=e.searchParams.get("ymid"))!=null?S:"",wua:(x=e.searchParams.get("wua"))!=null?x:"",use_full_list_or_browsers:(z=e.searchParams.get("use_full_list_or_browsers"))!=null?z:"",cid:(C=e.searchParams.get("cid"))!=null?C:"",geo:(Y=e.searchParams.get("geo"))!=null?Y:""};var k={start:"start",ageExit:"age_exit",mainExit:"main_exit",push:"push",autoexit:"autoexit",back:"back",reverse:"reverse",tabUnderClick:"tab_under_click",error:"error",unhandledRejection:"unhandled_rejection",template_hash_ready:"template_hash_ready"},B=g(),q=t=>{let r;(a=>a[a.BAD_REQUEST=400]="BAD_REQUEST")(r||(r={}));let s="https://wuytl.com",n=new URL(`${s}/sync-metrics`);d({url:n,data:t}).catch(o=>{o.status!=400&&setTimeout(()=>{d({url:n,data:t}).catch(()=>{console.error(`Metrics sync failed: ${t}`)})},100)})},j=()=>i.abtest?i.abtest:APP_CONFIG.abtest?String(APP_CONFIG.abtest):void 0,I=({event:t,exitZoneId:r,errorMessage:s,errorSubType:n,errorType:o})=>{var l,u,m;let a=(l=document.querySelector("html"))==null?void 0:l.dataset,c=(a==null?void 0:a.landingName)||"",_=(a==null?void 0:a.version)||"",F=(a==null?void 0:a.env)||"",U=window.location.host,$=[{app:"landings-constructor",event:k[t]||t,landing_name:c,build_version:_,landing_domain:U,landing_url:window.location.href,exit_zone_id:r?Number(r):void 0,template_hash:(u=window.templateHash)!=null?u:"",request_var:i.var_3,source_zone_id:isNaN(Number(i.var_2))?null:Number(i.var_2),sub_id:i.var_1,landing_load_date_time:B,error_message:s!=null?s:"",ab2r:j(),error_sub_type:n,error_type:o,env:F}];((m=APP_CONFIG.isAnalyticEnabled)!=null?m:!0)&&q($)};window.syncMetric=I;I({event:"start"});})();</script>
     <script>"use strict";(()=>{var m=(o=>(o.CUSTOM="CUSTOM",o.JS="JS",o))(m||{}),y=(n=>(n.FetchPlatformVersion="FetchPlatformVersion",n.GetIntlDateTimeFormat="GetIntlDateTimeFormat",n.GetTranslations="GetTranslations",n.PushStateToHistory="PushStateToHistory",n.Reverse="Reverse",n.TemplateHash="TemplateHash",n))(y||{}),l=(r=>(r.Error="Error",r.RangeError="RangeError",r.ReferenceError="ReferenceError",r.SecurityError="SecurityError",r.SyntaxError="SyntaxError",r.TypeError="TypeError",r.Unknown="Unknown",r))(l||{}),d=(o=>(o.rejectionhandled="rejectionhandled",o.unhandledrejection="unhandledrejection",o))(d||{});const p=()=>{const s=window.syncMetric;if(!s){console.log("Sync metric is not initialized");return}const u=e=>{if(e.filename.includes("extension"))return;const a=`errorMessage: ${e.message}, lineNumber: ${e.lineno}, columnNumber: ${e.colno}, file: ${e.filename}`,t=e.error.name&&Object.values(l).includes(e.error.name)?e.error.name:"Unknown";s({event:"error",errorMessage:a,errorSubType:t,errorType:"JS"})},o=e=>{var r,i,c;if(typeof e.reason=="object"&&((i=(r=e.reason)==null?void 0:r.stack)!=null&&i.includes("extension")))return;const a=typeof e.reason=="object"&&((c=e.reason)!=null&&c.message)?e.reason.message:JSON.stringify(e.reason),t=e.type,n=Object.values(d).includes(t)?t:"Unknown";s({event:"unhandledRejection",errorMessage:a,errorSubType:n,errorType:"JS"})};window.addEventListener("error",u),window.addEventListener("unhandledrejection",o)};p();})();</script>
