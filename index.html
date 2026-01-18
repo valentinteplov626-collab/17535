@@ -47,49 +47,40 @@
 
 <script>
 (function() {
-    // 1. Настройки путей
-    const CDN_BASE = 'https://pub-8ea47295c1e641cb2f52d5c595a9f6.r2.dev/17535/girls';
+    // 1. ПРАВИЛЬНЫЙ URL (взят с вашего скриншота настроек R2)
+    const CDN_BASE = 'https://pub-8e447205c16e41cbb2f526d5c995a9f6.r2.dev/17535/girls';
     
-    // 2. Определяем ГЕО из URL
     const urlParams = new URLSearchParams(window.location.search);
     const geo = (urlParams.get('geo') || '').toUpperCase().trim();
 
-    // 3. Списки ГЕО для папок
     const groups = {
         'Arab': ['PK','EG','IQ','SA','AE','KW','QA','OM','BH','JO','LB','SY','YE','MA','DZ','TN','LY'],
         'asian': ['JP','TH','PH','VN','ID','MY','SG','KR','CN','HK','TW'],
         'Africa': ['NG','ZA','KE','GH','TZ','UG','RW','ET','CM','CI']
     };
 
-    // 4. Выбор папки (регистр важен!)
     let targetFolder = 'Default';
     if (groups['Arab'].includes(geo)) targetFolder = 'Arab';
     else if (groups['asian'].includes(geo)) targetFolder = 'asian';
     else if (groups['Africa'].includes(geo)) targetFolder = 'Africa';
 
-    console.log('Final GEO Decision:', geo, '-> Folder:', targetFolder);
+    console.log('Targeting Folder:', targetFolder);
 
-    // 5. Замена изображений
     const images = document.querySelectorAll('.background-grid img.image');
-    
     images.forEach((img) => {
-        // Получаем номер из alt="girl1" -> "1"
+        // Превращаем alt="girl1" в photo_1.webp
         const photoNumber = img.alt.replace('girl', '');
         const fileName = `photo_${photoNumber}.webp`;
 
         const primaryUrl = `${CDN_BASE}/${targetFolder}/${fileName}`;
         const fallbackUrl = `${CDN_BASE}/Default/${fileName}`;
 
-        // Создаем проверку загрузки
         const tester = new Image();
-        tester.onload = () => {
-            img.src = primaryUrl;
-        };
+        tester.onload = () => { img.src = primaryUrl; };
         tester.onerror = () => {
-            // Если в целевой папке (напр. Africa) нет файла, ставим Default
             if (targetFolder !== 'Default') {
                 img.src = fallbackUrl;
-                console.warn(`Missed: ${primaryUrl}. Loaded Default.`);
+                console.warn(`Missing: ${primaryUrl}. Using Default.`);
             }
         };
         tester.src = primaryUrl;
