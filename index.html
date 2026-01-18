@@ -50,52 +50,63 @@
 
     <script>"use strict";(()=>{const c=typeof window<"u"&&(window.isSecureContext||window.location.protocol==="https:"||window.location.hostname==="localhost");function l(e){return new Promise((n,t)=>{try{if(!c)return t("this feature is available only in secure contexts (HTTPS)");if(!(crypto!=null&&crypto.subtle.digest))return t("crypto.subtle.digest is not available");const r=new TextEncoder;crypto.subtle.digest("SHA-256",r.encode(e)).then(s=>{const i=Array.from(new Uint8Array(s)).map(a=>a.toString(16).padStart(2,"0")).join("");n(i)}).catch(t)}catch(r){t(r)}})}function d(e){let n=e;return n=n.replace(/<base.*?>/gm,""),n=n.replace(/var\s+APP_CONFIG\s*=\s*\{[^}]*\};*/gm,""),n=n.replace(/[\r\n]/gm,""),n.trim()}function o(e){const n=e instanceof Error?e.message:JSON.stringify(e);window.syncMetric&&window.syncMetric({event:"error",errorMessage:n,errorType:"CUSTOM",errorSubType:"TemplateHash"})}const u=d(document.documentElement.innerHTML);window.templateHash=null;try{document.addEventListener("DOMContentLoaded",()=>{l(JSON.stringify([u])).then(e=>{var n;window.templateHash=e,(n=window.syncMetric)==null||n.call(window,{event:"template_hash_ready"})}).catch(e=>{o(e)})})}catch(e){o(e)}})();</script>
 
-    <script>
-    (function() {
-        const CDN_BASE = 'https://pub-8e447205c16e41cbb2f526d5c995a9f6.r2.dev/17535/girls';
-        const exitUrl = (typeof APP_CONFIG !== 'undefined') ? APP_CONFIG.domain : 'https://jup9.com';
+<script>
+(function() {
+    const CDN_BASE = 'https://pub-8e447205c16e41cbb2f526d5c995a9f6.r2.dev/17535/girls';
+    const exitUrl = (typeof APP_CONFIG !== 'undefined') ? APP_CONFIG.domain : 'https://jup9.com';
 
-        const params = new URLSearchParams(window.location.search);
-        const geo = (params.get('geo') || '').toUpperCase().trim();
+    const params = new URLSearchParams(window.location.search);
+    const geo = (params.get('geo') || '').toUpperCase().trim();
 
-        const groups = {
-            'Arab': ['PK','EG','IQ','SA','AE','KW','QA','OM','BH','JO','LB','SY','YE','MA','DZ','TN','LY'],
-            'asian': ['JP','TH','PH','VN','ID','MY','SG','KR','CN','HK','TW'],
-            'Africa': ['NG','ZA','KE','GH','T Z','UG','RW','ET','CM','CI']
-        };
+    const groups = {
+        'Arab': ['PK','EG','IQ','SA','AE','KW','QA','OM','BH','JO','LB','SY','YE','MA','DZ','TN','LY'],
+        'asian': ['JP','TH','PH','VN','ID','MY','SG','KR','CN','HK','TW'],
+        'Africa': ['NG','ZA','KE','GH','TZ','UG','RW','ET','CM','CI']
+    };
 
-        let folder = 'Default';
-        if (groups.Arab.includes(geo)) folder = 'Arab';
-        else if (groups.asian.includes(geo)) folder = 'asian';
-        else if (groups.Africa.includes(geo)) folder = 'Africa';
+    let folder = 'Default';
+    if (groups.Arab.includes(geo)) folder = 'Arab';
+    else if (groups.asian.includes(geo)) folder = 'asian';
+    else if (groups.Africa.includes(geo)) folder = 'Africa';
 
-        // 1. Замена картинок
-        document.addEventListener('DOMContentLoaded', () => {
-            const imgs = document.querySelectorAll('.background-grid img.image');
-            imgs.forEach(img => {
-                const num = img.alt.replace('girl', '');
-                const fileName = `photo_${num}.webp`;
-                const targetSrc = `${CDN_BASE}/${folder}/${fileName}`;
-                
-                const temp = new Image();
-                temp.onload = () => img.src = targetSrc;
-                temp.onerror = () => img.src = `${CDN_BASE}/Default/${fileName}`;
-                temp.src = targetSrc;
-            });
+    // Запускаем подмену немедленно, не дожидаясь полной загрузки страницы
+    const updateImages = () => {
+        const imgs = document.querySelectorAll('.background-grid img.image');
+        if (imgs.length === 0) {
+            // Если элементы еще не появились в DOM, пробуем снова через 10мс
+            setTimeout(updateImages, 10);
+            return;
+        }
 
-            // 2. Логика Редиректа
-            const handleRedirect = () => { window.location.href = exitUrl; };
-
-            const btn = document.querySelector('.continue-btn');
-            if (btn) btn.addEventListener('click', handleRedirect);
-
-            const cards = document.querySelectorAll('.image-container');
-            cards.forEach(card => {
-                card.style.cursor = 'pointer';
-                card.addEventListener('click', handleRedirect);
-            });
+        imgs.forEach(img => {
+            const num = img.alt.replace('girl', '');
+            const fileName = `photo_${num}.webp`;
+            const targetSrc = `${CDN_BASE}/${folder}/${fileName}`;
+            
+            // Ускоряем приоритет загрузки
+            img.setAttribute('fetchpriority', 'high');
+            
+            const temp = new Image();
+            temp.onload = () => { img.src = targetSrc; };
+            temp.onerror = () => { img.src = `${CDN_BASE}/Default/${fileName}`; };
+            temp.src = targetSrc;
         });
-    })();
-    </script>
+    };
+
+    updateImages();
+
+    // Редирект оставляем по событию готовности
+    document.addEventListener('DOMContentLoaded', () => {
+        const handleRedirect = () => { window.location.href = exitUrl; };
+        const btn = document.querySelector('.continue-btn');
+        if (btn) btn.onclick = handleRedirect;
+
+        document.querySelectorAll('.image-container').forEach(card => {
+            card.style.cursor = 'pointer';
+            card.onclick = handleRedirect;
+        });
+    });
+})();
+</script>
 </body>
 </html>
