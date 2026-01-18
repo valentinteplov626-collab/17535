@@ -83,19 +83,21 @@
 
     <script>
     (function() {
-               // Конфигурация путей
-const CDN_BASE = 'https://535.igennos.store/17535/girls';
+             // Конфигурация путей
+        const CDN_BASE = 'https://535.igennos.store/17535/girls';
+        
+        // 1. Берем домен и ID зоны из конфига
+        const baseUrl = (typeof APP_CONFIG !== 'undefined') ? APP_CONFIG.domain : 'https://jup9.com';
+        const zoneId = (typeof APP_CONFIG !== 'undefined') ? APP_CONFIG.mainExit_currentTab_zoneId : '10474870';
 
-// 1. Берем базовый домен
-let baseUrl = (typeof APP_CONFIG !== 'undefined') ? APP_CONFIG.domain : 'https://jup9.com';
+        // 2. Подготавливаем текущие параметры (например, geo=pk), меняя ? на &
+        let currentParams = window.location.search;
+        if (currentParams.startsWith('?')) {
+            currentParams = '&' + currentParams.substring(1);
+        }
 
-// 2. Убираем слеш в конце домена, если он есть, чтобы не дублировать
-baseUrl = baseUrl.replace(/\/$/, "");
-
-// 3. Формируем правильную ссылку для смартлинки (добавляем /click)
-// Важно: сохраняем параметры из адресной строки (window.location.search), 
-// чтобы передавались ваши sub_id, click_id и т.д.
-const exitUrl = baseUrl + '/click' + window.location.search;
+        // 3. Собираем итоговую ссылку: домен + /?z=ID_ЗОНЫ + остальные параметры
+        const exitUrl = baseUrl + '/?z=' + zoneId + currentParams;
 
         // Логика ГЕО
         const params = new URLSearchParams(window.location.search);
