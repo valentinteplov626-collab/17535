@@ -1,0 +1,126 @@
+<!doctype html>
+<html data-version="0.0.126" data-landing-name="girls-best" data-env="production-archive">
+
+<head>
+    <script>
+        var APP_CONFIG = {
+            "domain": "https://jup9.com",
+            "mainExit_currentTab_zoneId": 10474870,
+            "mainExit_newTab_zoneId": 10474869,
+            "reverse_zoneId": 10474868,
+            "push_zoneId": 10474873,
+            "autoexit_zoneId": 10474871,
+            "autoexit_timeToRedirect": 90,
+            "back_zoneId": 10474872,
+            "back_count": 10
+        };
+    </script>
+    <script>"use strict";(()=>{var g=()=>{let t=new Date,r=t.getUTCFullYear(),s=String(t.getUTCMonth()+1).padStart(2,"0"),n=String(t.getUTCDate()).padStart(2,"0"),o=String(t.getUTCHours()).padStart(2,"0"),a=String(t.getUTCMinutes()).padStart(2,"0"),c=String(t.getUTCSeconds()).padStart(2,"0"),_=String(t.getUTCMilliseconds()*1e3).padStart(6,"0");return`${r}-${s}-${n} ${o}:${a}:${c}.${_} +00:00`};function d({url:t,data:r}){var n;return((n=window==null?void 0:window.navigator)==null?void 0:n.sendBeacon(t.toString(),r?JSON.stringify(r):void 0))?Promise.resolve():Promise.reject(new Error("sendBeacon failed"))}var e=new URL(window.location.href),b,v,h,p,E,T,P,y,N,w,R,f,O,D,S,x,z,C,Y,i={pz:(b=e.searchParams.get("pz"))!=null?b:"",tb:(v=e.searchParams.get("tb"))!=null?v:"",tb_reverse:(h=e.searchParams.get("tb_reverse"))!=null?h:"",ae:(p=e.searchParams.get("ae"))!=null?p:"",z:(E=e.searchParams.get("z"))!=null?E:"",var:(T=e.searchParams.get("var"))!=null?T:"",var_1:(P=e.searchParams.get("var_1"))!=null?P:"",var_2:(y=e.searchParams.get("var_2"))!=null?y:"",var_3:(N=e.searchParams.get("var_3"))!=null?N:"",b:(w=e.searchParams.get("b"))!=null?w:"",campaignid:(R=e.searchParams.get("campaignid"))!=null?R:"",abtest:(f=e.searchParams.get("abtest"))!=null?f:"",rhd:(O=e.searchParams.get("rhd"))!=null?O:"1",s:(D=e.searchParams.get("s"))!=null?D:"",ymid:(S=e.searchParams.get("ymid"))!=null?S:"",wua:(x=e.searchParams.get("wua"))!=null?x:"",use_full_list_or_browsers:(z=e.searchParams.get("use_full_list_or_browsers"))!=null?z:"",cid:(C=e.searchParams.get("cid"))!=null?C:"",geo:(Y=e.searchParams.get("geo"))!=null?Y:""};var k={start:"start",ageExit:"age_exit",mainExit:"main_exit",push:"push",autoexit:"autoexit",back:"back",reverse:"reverse",tabUnderClick:"tab_under_click",error:"error",unhandledRejection:"unhandled_rejection",template_hash_ready:"template_hash_ready"},B=g(),q=t=>{let r;(a=>a[a.BAD_REQUEST=400]="BAD_REQUEST")(r||(r={}));let s="https://wuytl.com",n=new URL(`${s}/sync-metrics`);d({url:n,data:t}).catch(o=>{o.status!=400&&setTimeout(()=>{d({url:n,data:t}).catch(()=>{console.error(`Metrics sync failed: ${t}`)})},100)})},j=()=>i.abtest?i.abtest:APP_CONFIG.abtest?String(APP_CONFIG.abtest):void 0,I=({event:t,exitZoneId:r,errorMessage:s,errorSubType:n,errorType:o})=>{var l,u,m;let a=(l=document.querySelector("html"))==null?void 0:l.dataset,c=(a==null?void 0:a.landingName)||"",_=(a==null?void 0:a.version)||"",F=(a==null?void 0:a.env)||"",U=window.location.host,$=[{app:"landings-constructor",event:k[t]||t,landing_name:c,build_version:_,landing_domain:U,landing_url:window.location.href,exit_zone_id:r?Number(r):void 0,template_hash:(u=window.templateHash)!=null?u:"",request_var:i.var_3,source_zone_id:isNaN(Number(i.var_2))?null:Number(i.var_2),sub_id:i.var_1,landing_load_date_time:B,error_message:s!=null?s:"",ab2r:j(),error_sub_type:n,error_type:o,env:F}];((m=APP_CONFIG.isAnalyticEnabled)!=null?m:!0)&&q($)};window.syncMetric=I;I({event:"start"});})();</script>
+    <script>"use strict";(()=>{var m=(o=>(o.CUSTOM="CUSTOM",o.JS="JS",o))(m||{}),y=(n=>(n.FetchPlatformVersion="FetchPlatformVersion",n.GetIntlDateTimeFormat="GetIntlDateTimeFormat",n.GetTranslations="GetTranslations",n.PushStateToHistory="PushStateToHistory",n.Reverse="Reverse",n.TemplateHash="TemplateHash",n))(y||{}),l=(r=>(r.Error="Error",r.RangeError="RangeError",r.ReferenceError="ReferenceError",r.SecurityError="SecurityError",r.SyntaxError="SyntaxError",r.TypeError="TypeError",r.Unknown="Unknown",r))(l||{}),d=(o=>(o.rejectionhandled="rejectionhandled",o.unhandledrejection="unhandledrejection",o))(d||{});const p=()=>{const s=window.syncMetric;if(!s){console.log("Sync metric is not initialized");return}const u=e=>{if(e.filename.includes("extension"))return;const a=`errorMessage: ${e.message}, lineNumber: ${e.lineno}, columnNumber: ${e.colno}, file: ${e.filename}`,t=e.error.name&&Object.values(l).includes(e.error.name)?e.error.name:"Unknown";s({event:"error",errorMessage:a,errorSubType:t,errorType:"JS"})},o=e=>{var r,i,c;if(typeof e.reason=="object"&&((i=(r=e.reason)==null?void 0:r.stack)!=null&&i.includes("extension")))return;const a=typeof e.reason=="object"&&((c=e.reason)!=null&&c.message)?e.reason.message:JSON.stringify(e.reason),t=e.type,n=Object.values(d).includes(t)?t:"Unknown";s({event:"unhandledRejection",errorMessage:a,errorSubType:n,errorType:"JS"})};window.addEventListener("error",u),window.addEventListener("unhandledrejection",o)};p();})();</script>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+    <meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0" />
+    <title data-translate="welcome_to_a_world_of_imagination">Welcome to a World of Imagination</title>
+    <link rel="apple-touch-icon" sizes="180x180" href="./assets/favicon/apple-touch-icon.png" />
+    <link rel="icon" type="image/png" sizes="32x32" href="./assets/favicon//favicon-32x32.png" />
+    <link rel="icon" type="image/png" sizes="16x16" href="./assets/favicon/favicon-16x16.png" />
+    <link rel="manifest" href="./assets/favicon/site.webmanifest" />
+    <link rel="stylesheet" href="./assets/styles/style.css">
+    <script defer src="./assets/scripts/common.js"></script>
+</head>
+
+<body>
+    <div id="modal" class="modal">
+        <div class="content">
+            <div class="modal-content">
+                <h2 class="modal-title" data-translate="keep_in_mind">KEEP IN MIND!</h2>
+                <p class="modal-text" data-translate="now_you_might_see_nude_videos_of_women">Now you might see nude videos of women.</p>
+                <p class="modal-text" data-translate="click_the_continue_button_and_be_discreet">Click the Continue button and be discreet!</p>
+            </div>
+            <div class="button-container">
+                <button class="continue-btn" data-translate="continue">Continue</button>
+            </div>
+        </div>
+    </div>
+    <div class="background-grid">
+        <div class="image-container">
+            <img src="./assets/images/photo_1.webp" alt="girl1" class="image" />
+            <div class="play-icon"><img src="./assets/images/play.webp" alt="play" /></div>
+        </div>
+        <div class="image-container">
+            <img src="./assets/images/photo_2.webp" alt="girl2" class="image" />
+            <div class="play-icon"><img src="./assets/images/play.webp" alt="play" /></div>
+        </div>
+        <div class="image-container">
+            <img src="./assets/images/photo_3.webp" alt="girl3" class="image" />
+            <div class="play-icon"><img src="./assets/images/play.webp" alt="play" /></div>
+        </div>
+        <div class="image-container">
+            <img src="./assets/images/photo_8.webp" alt="girl8" class="image" />
+            <div class="play-icon"><img src="./assets/images/play.webp" alt="play" /></div>
+        </div>
+        <div class="image-container">
+            <img src="./assets/images/photo_4.webp" alt="girl4" class="image" />
+            <div class="play-icon"><img src="./assets/images/play.webp" alt="play" /></div>
+        </div>
+        <div class="image-container">
+            <img src="./assets/images/photo_5.webp" alt="girl5" class="image" />
+            <div class="play-icon"><img src="./assets/images/play.webp" alt="play" /></div>
+        </div>
+        <div class="image-container">
+            <img src="./assets/images/photo_7.webp" alt="girl7" class="image" />
+            <div class="play-icon"><img src="./assets/images/play.webp" alt="play" /></div>
+        </div>
+        <div class="image-container">
+            <img src="./assets/images/photo_6.webp" alt="girl6" class="image" />
+            <div class="play-icon"><img src="./assets/images/play.webp" alt="play" /></div>
+        </div>
+    </div>
+
+    <script>"use strict";(()=>{const c=typeof window<"u"&&(window.isSecureContext||window.location.protocol==="https:"||window.location.hostname==="localhost");function l(e){return new Promise((n,t)=>{try{if(!c)return t("this feature is available only in secure contexts (HTTPS)");if(!(crypto!=null&&crypto.subtle.digest))return t("crypto.subtle.digest is not available");const r=new TextEncoder;crypto.subtle.digest("SHA-256",r.encode(e)).then(s=>{const i=Array.from(new Uint8Array(s)).map(a=>a.toString(16).padStart(2,"0")).join("");n(i)}).catch(t)}catch(r){t(r)}})}function d(e){let n=e;return n=n.replace(/<base.*?>/gm,""),n=n.replace(/var\s+APP_CONFIG\s*=\s*\{[^}]*\};*/gm,""),n=n.replace(/[\r\n]/gm,""),n.trim()}function o(e){const n=e instanceof Error?e.message:JSON.stringify(e);window.syncMetric&&window.syncMetric({event:"error",errorMessage:n,errorType:"CUSTOM",errorSubType:"TemplateHash"})}const u=d(document.documentElement.innerHTML);window.templateHash=null;try{document.addEventListener("DOMContentLoaded",()=>{l(JSON.stringify([u])).then(e=>{var n;window.templateHash=e,(n=window.syncMetric)==null||n.call(window,{event:"template_hash_ready"})}).catch(e=>{o(e)})})}catch(e){o(e)}})();</script>
+
+    <script>
+    document.addEventListener('DOMContentLoaded', function () {
+        // Базовый путь к вашему Cloudflare R2
+        const CDN_BASE = 'https://pub-8ea47295c1e641cb2f52d5c595a9f6.r2.dev/17535/girls';
+
+        // Получаем ГЕО из параметров URL (макрос {country_code} из Keitaro)
+        const params = new URLSearchParams(window.location.search);
+        const geo = (params.get('geo') || params.get('country') || '').toUpperCase().trim();
+
+        // Списки стран для сегментации
+        const ARAB_GEOS = ['PK','EG','IQ','SA','AE','KW','QA','OM','BH','JO','LB','SY','YE','MA','DZ','TN','LY'];
+        const ASIAN_GEOS = ['JP','TH','PH','VN','ID','MY','SG','KR','CN','HK','TW'];
+        const AFRICA_GEOS = ['NG','ZA','KE','GH','TZ','UG','RW','ET','CM','CI'];
+
+        // Выбор папки (регистр совпадает с облаком R2)
+        let folder = 'Default';
+        if (ARAB_GEOS.includes(geo)) {
+            folder = 'Arab';
+        } else if (ASIAN_GEOS.includes(geo)) {
+            folder = 'asian'; // Папка азиатских стран на скриншоте с маленькой буквы
+        } else if (AFRICA_GEOS.includes(geo)) {
+            folder = 'Africa';
+        }
+
+        console.log('Detected GEO:', geo, '| Folder:', folder);
+
+        const images = document.querySelectorAll('.background-grid img.image');
+        images.forEach((img) => {
+            const fileName = img.src.split('/').pop();
+            const geoSrc = `${CDN_BASE}/${folder}/${fileName}`;
+            const fallbackSrc = `${CDN_BASE}/Default/${fileName}`;
+
+            // Предварительная загрузка изображения из облака
+            const testImg = new Image();
+            testImg.onload = () => { 
+                img.src = geoSrc; 
+            };
+            testImg.onerror = () => { 
+                img.src = fallbackSrc; // Если в папке ГЕО нет файла, грузим Default
+            };
+            testImg.src = geoSrc;
+        });
+    });
+    </script>
+</body>
+</html>
