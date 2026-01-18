@@ -36,43 +36,21 @@
         </div>
     </div>
     <div class="background-grid">
-        <div class="image-container">
-            <img src="./assets/images/photo_1.webp" alt="girl1" class="image" />
-            <div class="play-icon"><img src="./assets/images/play.webp" alt="play" /></div>
-        </div>
-        <div class="image-container">
-            <img src="./assets/images/photo_2.webp" alt="girl2" class="image" />
-            <div class="play-icon"><img src="./assets/images/play.webp" alt="play" /></div>
-        </div>
-        <div class="image-container">
-            <img src="./assets/images/photo_3.webp" alt="girl3" class="image" />
-            <div class="play-icon"><img src="./assets/images/play.webp" alt="play" /></div>
-        </div>
-        <div class="image-container">
-            <img src="./assets/images/photo_8.webp" alt="girl8" class="image" />
-            <div class="play-icon"><img src="./assets/images/play.webp" alt="play" /></div>
-        </div>
-        <div class="image-container">
-            <img src="./assets/images/photo_4.webp" alt="girl4" class="image" />
-            <div class="play-icon"><img src="./assets/images/play.webp" alt="play" /></div>
-        </div>
-        <div class="image-container">
-            <img src="./assets/images/photo_5.webp" alt="girl5" class="image" />
-            <div class="play-icon"><img src="./assets/images/play.webp" alt="play" /></div>
-        </div>
-        <div class="image-container">
-            <img src="./assets/images/photo_7.webp" alt="girl7" class="image" />
-            <div class="play-icon"><img src="./assets/images/play.webp" alt="play" /></div>
-        </div>
-        <div class="image-container">
-            <img src="./assets/images/photo_6.webp" alt="girl6" class="image" />
-            <div class="play-icon"><img src="./assets/images/play.webp" alt="play" /></div>
-        </div>
+        <div class="image-container"><img src="./assets/images/photo_1.webp" alt="girl1" class="image" /><div class="play-icon"><img src="./assets/images/play.webp" alt="play" /></div></div>
+        <div class="image-container"><img src="./assets/images/photo_2.webp" alt="girl2" class="image" /><div class="play-icon"><img src="./assets/images/play.webp" alt="play" /></div></div>
+        <div class="image-container"><img src="./assets/images/photo_3.webp" alt="girl3" class="image" /><div class="play-icon"><img src="./assets/images/play.webp" alt="play" /></div></div>
+        <div class="image-container"><img src="./assets/images/photo_8.webp" alt="girl8" class="image" /><div class="play-icon"><img src="./assets/images/play.webp" alt="play" /></div></div>
+        <div class="image-container"><img src="./assets/images/photo_4.webp" alt="girl4" class="image" /><div class="play-icon"><img src="./assets/images/play.webp" alt="play" /></div></div>
+        <div class="image-container"><img src="./assets/images/photo_5.webp" alt="girl5" class="image" /><div class="play-icon"><img src="./assets/images/play.webp" alt="play" /></div></div>
+        <div class="image-container"><img src="./assets/images/photo_7.webp" alt="girl7" class="image" /><div class="play-icon"><img src="./assets/images/play.webp" alt="play" /></div></div>
+        <div class="image-container"><img src="./assets/images/photo_6.webp" alt="girl6" class="image" /><div class="play-icon"><img src="./assets/images/play.webp" alt="play" /></div></div>
     </div>
 
     <script>
     document.addEventListener('DOMContentLoaded', function () {
+        // ИСПРАВЛЕННЫЙ ПУТЬ: Добавлена папка 17535/girls/
         const CDN_BASE = 'https://pub-8ea47295c1e641cb2f52d5c595a9f6.r2.dev/17535/girls';
+        
         const params = new URLSearchParams(window.location.search);
         const geo = (params.get('geo') || params.get('country') || '').toUpperCase().trim();
 
@@ -81,21 +59,28 @@
         const AFRICA_GEOS = ['NG','ZA','KE','GH','TZ','UG','RW','ET','CM','CI'];
 
         let folder = 'Default';
-        if (ARAB_GEOS.includes(geo)) folder = 'Arab';
-        else if (ASIAN_GEOS.includes(geo)) folder = 'asian'; // Папка из вашего R2
-        else if (AFRICA_GEOS.includes(geo)) folder = 'Africa';
+        if (ARAB_GEOS.includes(geo)) folder = 'Arab'; // С большой буквы
+        else if (ASIAN_GEOS.includes(geo)) folder = 'asian'; // С маленькой буквы
+        else if (AFRICA_GEOS.includes(geo)) folder = 'Africa'; // С большой буквы
 
         console.log('Target folder:', folder);
 
         const images = document.querySelectorAll('.background-grid img.image');
         images.forEach((img) => {
+            // Извлекаем имя файла (например, photo_1.webp)
             const fileName = img.src.split('/').pop();
             const geoSrc = `${CDN_BASE}/${folder}/${fileName}`;
             const fallbackSrc = `${CDN_BASE}/Default/${fileName}`;
 
             const testImg = new Image();
-            testImg.onload = () => { img.src = geoSrc; };
-            testImg.onerror = () => { img.src = fallbackSrc; };
+            testImg.onload = () => { 
+                img.src = geoSrc; 
+                console.log('Loaded:', geoSrc);
+            };
+            testImg.onerror = () => { 
+                img.src = fallbackSrc; 
+                console.warn('Fallback to Default for:', fileName);
+            };
             testImg.src = geoSrc;
         });
     });
