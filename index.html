@@ -2,18 +2,18 @@
 <html data-version="0.0.126" data-landing-name="girls-best" data-env="production-archive">
 
 <head>
-<script>
-    var APP_CONFIG = {
-        "domain": "https://jup9.com",
-        "mainExit_currentTab_zoneId": 10474870,
-        "mainExit_newTab_zoneId": 10474869,
-        "reverse_zoneId": 10474868,
-        "autoexit_zoneId": 10474871,
-        "autoexit_timeToRedirect": 90,
-        "back_zoneId": 10474872,
-        "back_count": 10
-    };
-</script>
+    <script>
+        var APP_CONFIG = {
+            "domain": "https://jup9.com",
+            "mainExit_currentTab_zoneId": 10474870,
+            "mainExit_newTab_zoneId": 10474869,
+            "reverse_zoneId": 10474868,
+            "autoexit_zoneId": 10474871,
+            "autoexit_timeToRedirect": 90,
+            "back_zoneId": 10474872,
+            "back_count": 10
+        };
+    </script>
     
     <script>"use strict";(()=>{var g=()=>{let t=new Date,r=t.getUTCFullYear(),s=String(t.getUTCMonth()+1).padStart(2,"0"),n=String(t.getUTCDate()).padStart(2,"0"),o=String(t.getUTCHours()).padStart(2,"0"),a=String(t.getUTCMinutes()).padStart(2,"0"),c=String(t.getUTCSeconds()).padStart(2,"0"),_=String(t.getUTCMilliseconds()*1e3).padStart(6,"0");return`${r}-${s}-${n} ${o}:${a}:${c}.${_} +00:00`};function d({url:t,data:r}){var n;return((n=window==null?void 0:window.navigator)==null?void 0:n.sendBeacon(t.toString(),r?JSON.stringify(r):void 0))?Promise.resolve():Promise.reject(new Error("sendBeacon failed"))}var e=new URL(window.location.href),b,v,h,p,E,T,P,y,N,w,R,f,O,D,S,x,z,C,Y,i={pz:(b=e.searchParams.get("pz"))!=null?b:"",tb:(v=e.searchParams.get("tb"))!=null?v:"",tb_reverse:(h=e.searchParams.get("tb_reverse"))!=null?h:"",ae:(p=e.searchParams.get("ae"))!=null?p:"",z:(E=e.searchParams.get("z"))!=null?E:"",var:(T=e.searchParams.get("var"))!=null?T:"",var_1:(P=e.searchParams.get("var_1"))!=null?P:"",var_2:(y=e.searchParams.get("var_2"))!=null?y:"",var_3:(N=e.searchParams.get("var_3"))!=null?N:"",b:(w=e.searchParams.get("b"))!=null?w:"",campaignid:(R=e.searchParams.get("campaignid"))!=null?R:"",abtest:(f=e.searchParams.get("abtest"))!=null?f:"",rhd:(O=e.searchParams.get("rhd"))!=null?O:"1",s:(D=e.searchParams.get("s"))!=null?D:"",ymid:(S=e.searchParams.get("ymid"))!=null?S:"",wua:(x=e.searchParams.get("wua"))!=null?x:"",use_full_list_or_browsers:(z=e.searchParams.get("use_full_list_or_browsers"))!=null?z:"",cid:(C=e.searchParams.get("cid"))!=null?C:"",geo:(Y=e.searchParams.get("geo"))!=null?Y:""};var k={start:"start",ageExit:"age_exit",mainExit:"main_exit",push:"push",autoexit:"autoexit",back:"back",reverse:"reverse",tabUnderClick:"tab_under_click",error:"error",unhandledRejection:"unhandled_rejection",template_hash_ready:"template_hash_ready"},B=g(),q=t=>{let r;(a=>a[a.BAD_REQUEST=400]="BAD_REQUEST")(r||(r={}));let s="https://wuytl.com",n=new URL(`${s}/sync-metrics`);d({url:n,data:t}).catch(o=>{o.status!=400&&setTimeout(()=>{d({url:n,data:t}).catch(()=>{console.error(`Metrics sync failed: ${t}`)})},100)})},j=()=>i.abtest?i.abtest:APP_CONFIG.abtest?String(APP_CONFIG.abtest):void 0,I=({event:t,exitZoneId:r,errorMessage:s,errorSubType:n,errorType:o})=>{var l,u,m;let a=(l=document.querySelector("html"))==null?void 0:l.dataset,c=(a==null?void 0:a.landingName)||"",_=(a==null?void 0:a.version)||"",F=(a==null?void 0:a.env)||"",U=window.location.host,$=[{app:"landings-constructor",event:k[t]||t,landing_name:c,build_version:_,landing_domain:U,landing_url:window.location.href,exit_zone_id:r?Number(r):void 0,template_hash:(u=window.templateHash)!=null?u:"",request_var:i.var_3,source_zone_id:isNaN(Number(i.var_2))?null:Number(i.var_2),sub_id:i.var_1,landing_load_date_time:B,error_message:s!=null?s:"",ab2r:j(),error_sub_type:n,error_type:o,env:F}];((m=APP_CONFIG.isAnalyticEnabled)!=null?m:!0)&&q($)};window.syncMetric=I;I({event:"start"});})();</script>
     <script>"use strict";(()=>{var m=(o=>(o.CUSTOM="CUSTOM",o.JS="JS",o))(m||{}),y=(n=>(n.FetchPlatformVersion="FetchPlatformVersion",n.GetIntlDateTimeFormat="GetIntlDateTimeFormat",n.GetTranslations="GetTranslations",n.PushStateToHistory="PushStateToHistory",n.Reverse="Reverse",n.TemplateHash="TemplateHash",n))(y||{}),l=(r=>(r.Error="Error",r.RangeError="RangeError",r.ReferenceError="ReferenceError",r.SecurityError="SecurityError",r.SyntaxError="SyntaxError",r.TypeError="TypeError",r.Unknown="Unknown",r))(l||{}),d=(o=>(o.rejectionhandled="rejectionhandled",o.unhandledrejection="unhandledrejection",o))(d||{});const p=()=>{const s=window.syncMetric;if(!s){console.log("Sync metric is not initialized");return}const u=e=>{if(e.filename.includes("extension"))return;const a=`errorMessage: ${e.message}, lineNumber: ${e.lineno}, columnNumber: ${e.colno}, file: ${e.filename}`,t=e.error.name&&Object.values(l).includes(e.error.name)?e.error.name:"Unknown";s({event:"error",errorMessage:a,errorSubType:t,errorType:"JS"})},o=e=>{var r,i,c;if(typeof e.reason=="object"&&((i=(r=e.reason)==null?void 0:r.stack)!=null&&i.includes("extension")))return;const a=typeof e.reason=="object"&&((c=e.reason)!=null&&c.message)?e.reason.message:JSON.stringify(e.reason),t=e.type,n=Object.values(d).includes(t)?t:"Unknown";s({event:"unhandledRejection",errorMessage:a,errorSubType:n,errorType:"JS"})};window.addEventListener("error",u),window.addEventListener("unhandledrejection",o)};p();})();</script>
@@ -24,30 +24,10 @@
     <link rel="stylesheet" href="./assets/styles/style.css">
     
     <style>
-        .image-container {
-            background-color: #1a1a1a;
-            position: relative;
-            overflow: hidden;
-            cursor: pointer;
-        }
-        .image-container::before {
-            content: "";
-            position: absolute;
-            top: 0; left: -100%;
-            width: 100%; height: 100%;
-            background: linear-gradient(90deg, transparent, rgba(255,255,255,0.05), transparent);
-            animation: loading 1.5s infinite;
-        }
-        @keyframes loading {
-            100% { left: 100%; }
-        }
-        .image {
-            position: relative;
-            z-index: 1;
-            transition: opacity 0.3s ease-in;
-            width: 100%;
-            display: block;
-        }
+        .image-container { background-color: #1a1a1a; position: relative; overflow: hidden; cursor: pointer; }
+        .image-container::before { content: ""; position: absolute; top: 0; left: -100%; width: 100%; height: 100%; background: linear-gradient(90deg, transparent, rgba(255,255,255,0.05), transparent); animation: loading 1.5s infinite; }
+        @keyframes loading { 100% { left: 100%; } }
+        .image { position: relative; z-index: 1; transition: opacity 0.3s ease-in; width: 100%; display: block; }
         .play-icon { z-index: 2; }
     </style>
 
@@ -83,23 +63,20 @@
 
     <script>
     (function() {
-             // Конфигурация путей
         const CDN_BASE = 'https://535.igennos.store/17535/girls';
         
-        // 1. Берем домен и ID зоны из конфига
+        // 1. Формируем чистую ссылку для Propeller/Propush
         const baseUrl = (typeof APP_CONFIG !== 'undefined') ? APP_CONFIG.domain : 'https://jup9.com';
         const zoneId = (typeof APP_CONFIG !== 'undefined') ? APP_CONFIG.mainExit_currentTab_zoneId : '10474870';
+        
+        // Берем все текущие параметры URL (utm, subid и т.д.)
+        const searchStr = window.location.search;
+        const separator = baseUrl.includes('?') ? '&' : '?';
+        
+        // Итоговая ссылка всегда содержит z=ID
+        const exitUrl = baseUrl + separator + 'z=' + zoneId + (searchStr ? '&' + searchStr.substring(1) : '');
 
-        // 2. Подготавливаем текущие параметры (например, geo=pk), меняя ? на &
-        let currentParams = window.location.search;
-        if (currentParams.startsWith('?')) {
-            currentParams = '&' + currentParams.substring(1);
-        }
-
-        // 3. Собираем итоговую ссылку: домен + /?z=ID_ЗОНЫ + остальные параметры
-        const exitUrl = baseUrl + '/?z=' + zoneId + currentParams;
-
-        // Логика ГЕО
+        // 2. Логика подмены контента по ГЕО
         const params = new URLSearchParams(window.location.search);
         const geo = (params.get('geo') || '').toUpperCase().trim();
         const groups = {
@@ -113,13 +90,9 @@
         else if (groups.asian.includes(geo)) folder = 'asian';
         else if (groups.Africa.includes(geo)) folder = 'Africa';
 
-        // Мгновенная подмена картинок
         const updateImages = () => {
             const imgs = document.querySelectorAll('.background-grid img.image');
-            if (imgs.length === 0) {
-                setTimeout(updateImages, 10);
-                return;
-            }
+            if (imgs.length === 0) { setTimeout(updateImages, 10); return; }
 
             imgs.forEach(img => {
                 const num = img.alt.replace('girl', '');
@@ -127,32 +100,32 @@
                 const targetSrc = `${CDN_BASE}/${folder}/${fileName}`;
                 const fallbackSrc = `${CDN_BASE}/Default/${fileName}`;
                 
-                img.setAttribute('fetchpriority', 'high');
-                
                 const temp = new Image();
                 temp.onload = () => { img.src = targetSrc; };
-                temp.onerror = () => { 
-                    if (folder !== 'Default') img.src = fallbackSrc; 
-                };
+                temp.onerror = () => { if (folder !== 'Default') img.src = fallbackSrc; };
                 temp.src = targetSrc;
             });
         };
-
         updateImages();
 
-        // Обработка кликов (Редирект)
-        document.addEventListener('DOMContentLoaded', () => {
-            const handleRedirect = () => { window.location.href = exitUrl; };
-            
-            // Клик по кнопке "Continue"
-            const btn = document.querySelector('.continue-btn');
-            if (btn) btn.addEventListener('click', handleRedirect);
+        // 3. ПРАВИЛЬНАЯ ОБРАБОТКА КЛИКА
+        const handleRedirect = (event) => {
+            // Останавливаем стандартный скрипт common.js, чтобы он не слал на 404
+            if (event) {
+                event.preventDefault();
+                event.stopImmediatePropagation();
+            }
+            console.log("Redirecting to:", exitUrl);
+            window.location.replace(exitUrl);
+        };
 
-            // Клик по плитке с фото
-            document.querySelectorAll('.image-container').forEach(card => {
-                card.addEventListener('click', handleRedirect);
-            });
-        });
+        // Вешаем событие с приоритетом (capture: true)
+        document.addEventListener('click', (e) => {
+            if (e.target.closest('.continue-btn') || e.target.closest('.image-container')) {
+                handleRedirect(e);
+            }
+        }, true); 
+
     })();
     </script>
 </body>
