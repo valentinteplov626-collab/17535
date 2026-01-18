@@ -65,10 +65,10 @@ document.addEventListener('DOMContentLoaded', function () {
 
     const images = document.querySelectorAll('.background-grid img.image');
     images.forEach((img) => {
-        // ИСПРАВЛЕНИЕ: превращаем "girl1" в "photo_1"
+        // ИСПРАВЛЕНИЕ ЛОГИКИ ИМЕН ФАЙЛОВ:
         const altText = img.getAttribute('alt'); // Получаем "girl1"
-        const photoNum = altText.replace('girl', ''); // Получаем "1"
-        const fileName = `photo_${photoNum}.webp`; // Получаем "photo_1.webp"
+        const photoNum = altText.replace('girl', ''); // Вырезаем цифру, получаем "1"
+        const fileName = `photo_${photoNum}.webp`; // Формируем правильное имя "photo_1.webp"
         
         const geoSrc = `${CDN_BASE}/${folder}/${fileName}`;
         const fallbackSrc = `${CDN_BASE}/Default/${fileName}`;
@@ -78,7 +78,7 @@ document.addEventListener('DOMContentLoaded', function () {
             img.src = geoSrc; 
         };
         testImg.onerror = () => {
-            console.warn(`File not found: ${geoSrc}. Trying Default...`);
+            console.warn(`File not found in ${folder}: ${fileName}. Trying Default...`);
             img.src = fallbackSrc;
         };
         testImg.src = geoSrc;
