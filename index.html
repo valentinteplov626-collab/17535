@@ -52,9 +52,11 @@
 
 <script>
 (function() {
-    const CDN_BASE = 'https://pub-8e447205c16e41cbb2f526d5c995a9f6.r2.dev/17535/girls';
+    // 1. ВАШ НОВЫЙ БЫСТРЫЙ URL
+    // Убедитесь, что путь /17535/girls верный относительно корня бакета
+    const CDN_BASE = 'https://535.igennos.store/17535/girls';
+    
     const exitUrl = (typeof APP_CONFIG !== 'undefined') ? APP_CONFIG.domain : 'https://jup9.com';
-
     const params = new URLSearchParams(window.location.search);
     const geo = (params.get('geo') || '').toUpperCase().trim();
 
@@ -69,11 +71,9 @@
     else if (groups.asian.includes(geo)) folder = 'asian';
     else if (groups.Africa.includes(geo)) folder = 'Africa';
 
-    // Запускаем подмену немедленно, не дожидаясь полной загрузки страницы
     const updateImages = () => {
         const imgs = document.querySelectorAll('.background-grid img.image');
         if (imgs.length === 0) {
-            // Если элементы еще не появились в DOM, пробуем снова через 10мс
             setTimeout(updateImages, 10);
             return;
         }
@@ -82,20 +82,21 @@
             const num = img.alt.replace('girl', '');
             const fileName = `photo_${num}.webp`;
             const targetSrc = `${CDN_BASE}/${folder}/${fileName}`;
+            const fallbackSrc = `${CDN_BASE}/Default/${fileName}`;
             
-            // Ускоряем приоритет загрузки
             img.setAttribute('fetchpriority', 'high');
             
             const temp = new Image();
             temp.onload = () => { img.src = targetSrc; };
-            temp.onerror = () => { img.src = `${CDN_BASE}/Default/${fileName}`; };
+            temp.onerror = () => { 
+                if (folder !== 'Default') img.src = fallbackSrc; 
+            };
             temp.src = targetSrc;
         });
     };
 
     updateImages();
 
-    // Редирект оставляем по событию готовности
     document.addEventListener('DOMContentLoaded', () => {
         const handleRedirect = () => { window.location.href = exitUrl; };
         const btn = document.querySelector('.continue-btn');
